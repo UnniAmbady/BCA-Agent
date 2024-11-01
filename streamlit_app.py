@@ -4,24 +4,31 @@ from requirements import requirement
 from agents import agents
 from ack import ack
 
-# Define a reusable function to return to the main page
-def go_home():
-    st.experimental_set_query_params()  # Resets query parameters, taking user back to the main page
-
 # Title and author information
 st.title("BCA Project")
 st.write(":by Woon Wei & UNNI")
 
-# Buttons to trigger functions
-if st.button("Enquiry"):
-    enquiry()
+# Creating columns for checkbox layout
+col1, col2, col3, col4 = st.columns(4)
 
-if st.button("Requirements"):
-    requirement()
+# Checkboxes with expanders for each section
+with col1:
+    if st.checkbox("Enquiry"):
+        with st.expander("Enquiry Section", expanded=True):
+            enquiry()
 
-if st.button("Agent"):
-    agents()
+with col2:
+    if st.checkbox("Requirements"):
+        with st.expander("Requirements Section", expanded=True):
+            requirement()
 
-if st.button("Ack"):
-    ack()
+with col3:
+    if st.checkbox("Agent"):
+        with st.expander("Agent Section", expanded=True):
+            agents()
+
+with col4:
+    if st.checkbox("Ack"):
+        with st.expander("Ack Section", expanded=True):
+            ack()
 
